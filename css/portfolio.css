@@ -22,6 +22,7 @@ a,
 a:link {
   text-decoration: none;
   color: var(--main-font-color);
+  color: #f4f4f4;
 }
 
 html,
@@ -59,24 +60,28 @@ img {
   --import-color: #C586C0;
   /*purple*/
 }
-
 .tag {
+  color: #393939;
   color: var(--tag-color);
 }
 
 .attribute {
+  color: #8CDCFE;
   color: var(--attribute-color);
 }
 
 .value {
+  color: #C39178;
   color: var(--value-color);
 }
 
 .comment {
+  color: #6a9955;
   color: var(--comment-color);
 }
 
 .import {
+  color: #C586C0;
   color: var(--import-color);
 }
 
@@ -117,7 +122,9 @@ img {
   body {
     width: 100%;
     background-color: var(--main-bg-color);
+    background-color: #393939;
     color: var(--main-font-color);
+    color: #f4f4f4;
     position: relative;
   }
 
@@ -147,6 +154,7 @@ img {
   header>ul {
     position: relative;
     background-color: var(--header-bg-color);
+    background-color: #303030;
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -176,6 +184,7 @@ img {
     z-index: 9991;
     height: calc(35px + 0.5vw);
     background-color: var(--header-bg-color);
+    background-color: #303030;
     transition: .25s;
   }
 
@@ -185,27 +194,18 @@ img {
     z-index: 9992;
     height: calc(35px + 0.5vw);
     background-color: var(--section-bg-color);
+    background-color: #252526;
   }
 
-  .introBtn {
-    left: 0;
-  }
+  .introBtn { left: 0;}
 
-  .aboutmeBtn {
-    left: 20%;
-  }
+  .aboutmeBtn { left: 20%;}
 
-  .skillBtn {
-    left: 40%;
-  }
+  .skillBtn { left: 40%;}
 
-  .projectBtn {
-    left: 60%;
-  }
+  .projectBtn { left: 60%;}
 
-  .contactBtn {
-    left: 80%;
-  }
+  .contactBtn { left: 80%;}
 
   .introBtn.on,
   .introBtn:hover {
@@ -245,6 +245,7 @@ img {
     height: 1px;
     display: inline-block;
     background: var(--main-font-color);
+    background: #f4f4f4;
     transition: .25s;
   }
 
@@ -270,6 +271,7 @@ img {
 
   section {
     background-color: var(--section-bg-color);
+    background-color: #252526;
     position: relative;
     /*height: 100vh;*/
     width: 90%;
@@ -294,11 +296,13 @@ img {
   }
 
   article {
-    background-color: var(--article-vg-color);
+    background-color: var(--article-bg-color);
+    background-color: #1E1E1E;
   }
 
   .innerBox {
     background-color: var(--article-bg-color);
+    background-color: #1E1E1E;
     width: 100%;
     box-sizing: border-box;
     padding: 2% 2%;
@@ -472,11 +476,8 @@ img {
   /************************************* project *************************************/
   .projectTab {
     width: 100%;
-    height: 4.14vw;
-    background: #000;
-    border-left: 0.5vw solid #000;
-    border-right: 0.5vw solid #000;
-    box-sizing: border-box;
+    height: 5vw;
+    background: #252526;
   }
   .projectTab ul{
     display: flex;
@@ -494,12 +495,27 @@ img {
     z-index: 10;
     padding: 0.5vw 0;
     cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.25s;
   }
+
+  .projectTab li:hover{
+    background: rgba(0,0,0,0.4);
+  }
+
+  .projectTab ul li img{
+    height: 4vw;
+  }
+
   .projectTab li.travelerTab{
     left:0;
+    border-left: 0.5vw solid #000;
+    box-sizing: border-box;
   }
   .projectTab li.batTab{
     left:50%;
+    border-right: 0.5vw solid #000;
+    box-sizing: border-box;
   }
 
   .projectTab li.tabBg{
@@ -508,7 +524,7 @@ img {
     left: 0;
     z-index: 9;
     width:50%;
-    background: var(--article-bg-color);
+    background: #1E1E1E;
   }
   .projectTab h3 {
     font-size: 2.6vw;
@@ -527,12 +543,15 @@ img {
   .contentsSlideBox {
     width: 200%;
     margin-left: 0;
+    transition: .25s;
     display: flex;
     justify-content: space-between;
   }
 
   .contentsSlide {
-    width: 49%;
+    width: 50%;
+    padding: 2%;
+    box-sizing: border-box;
   }
 
   .projectSlideBtn {
@@ -565,7 +584,7 @@ img {
     width: 40%;
     position: absolute;
     top: 10%;
-    right: 0;
+    right: 5%;
     bottom: 0;
     transform-style: preserve-3d;
     perspective: 100px;

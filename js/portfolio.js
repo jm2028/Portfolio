@@ -143,4 +143,13 @@ $(document).ready(function () {
     var skill = $('.skillList');
     var height = skill.scrollHeight;
     skill.css('--dl-height', height + 'px');
+
+    $('.tabBtn').each(function(i){
+        $(this).attr('data-index',i)
+    }).click(function(){
+        var i = $(this).attr('data-index');
+        console.log(i);
+        $('.tabBg').css('left',i * 50 + '%');
+        $('.contentsSlideBox').css('marginLeft',i * -100 + '%');
+    });
 });
