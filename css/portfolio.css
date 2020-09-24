@@ -496,7 +496,7 @@ img {
     padding: 0.5vw 0;
     cursor: pointer;
     box-sizing: border-box;
-    transition: 0.25s;
+    transition: 0.25s cubic-bezier(.19, .5, .45, .9);
   }
 
   .projectTab li:hover{
@@ -543,7 +543,7 @@ img {
   .contentsSlideBox {
     width: 200%;
     margin-left: 0;
-    transition: .25s;
+    transition: .25s cubic-bezier(.19, .5, .45, .9);
     display: flex;
     justify-content: space-between;
   }
@@ -564,6 +564,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 1vw;
   }
 
   .projectSlideBtn ul li {
@@ -623,7 +624,7 @@ img {
   }
 
   .desktopInImageWrap {
-    width: 276%;
+    width: 644%;
     display: flex;
     padding: 4% 0 0 4%;
     transition: .4s;
@@ -668,7 +669,7 @@ img {
   }
 
   .padInImageWrap {
-    width: 265.8%;
+    width: 620.2%;
     display: flex;
     padding: 12.6% 0 0 5.5%;
     transition: .4s;
@@ -713,7 +714,7 @@ img {
   }
 
   .mobileInImageWrap {
-    width: 265.8%;
+    width: 620.2%;
     display: flex;
     padding: 25.5% 0 0 5.5%;
     transition: .4s;

@@ -150,6 +150,16 @@ $(document).ready(function () {
         var i = $(this).attr('data-index');
         console.log(i);
         $('.tabBg').css('left',i * 50 + '%');
-        $('.contentsSlideBox').css('marginLeft',i * -100 + '%');
+        $('.contentsSlideBox').css('marginLeft' , i * -100 + '%');
+    });
+    $('.tabBtn.travelerTab').click(function(){
+        $('.desktopInImageWrap').css('margin-left' , 0);
+        $('.padInImageWrap').css('margin-left' , 0);
+        $('.mobileInImageWrap').css('margin-left' , 0);
+    });
+    $('.tabBtn.batTab').click(function(){
+        $('.desktopInImageWrap').css('margin-left' , -276 + '%'); // 1page = 92%
+        $('.padInImageWrap').css('margin-left' , -265.8 + '%'); // 1page = 88.6%
+        $('.mobileInImageWrap').css('margin-left' , -265.8 + '%'); // 1page = 88.6%
     });
 });
