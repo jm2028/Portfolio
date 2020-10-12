@@ -1,53 +1,53 @@
 $(document).ready(function () {
-    $(window).scroll(function () {
-        var windowS = $(window).scrollTop();
-        if (windowS > 0) {
-            $('.ulBG').css('box-shadow', '0px 5px 3px -3px #000');
-        } else {
-            $('.ulBG').css('box-shadow', 'none');
+    let headerheight = $('.headerTitle').outerHeight()
+    $('body').css('padding-top',headerheight - 1);
+
+        if ($(window).width() > 1024) {
+            $(window).scroll(function () {
+                var windowS = $(window).scrollTop();
+                if (windowS > 0) {
+                    $('.ulBG').css('box-shadow', '0px 5px 3px -3px #000');
+                } else {
+                    $('.ulBG').css('box-shadow', 'none');
+                }
+        
+                /*scroll Event*/
+                var bt_window = $(window).scrollTop() + $(window).height();
+                $('.sectionTitleStart').each(function () {
+                    var section_object = $(this).offset().top + $(this).outerHeight()  + 100 ;
+                    if (bt_window > section_object) {
+                        $(this).css('letter-spacing','1vw');
+                    } else {
+                        $(this).css('letter-spacing', '0');
+                    }
+                });
+                $('.sectionTitle').each(function (i) {
+                    var bt_of_object = $(this).offset().top + $(this).outerHeight() * 0.4;
+                    if ($(window).scrollTop() <= 0) {
+                        $('.headerTitle').removeClass('on');
+                        $('.introBtn').addClass('on');
+                    } // header css
+                    if (bt_window > bt_of_object) {
+                        //var scrollValue = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height())) * 80;
+                        changeBgColor(i);
+                        $('.liBG').stop().animate({
+                            left: i * 20 + '%'
+                        }, 550, 'easeOutCirc');
+                        /*$(this).children('.sectionTitleStart').css('letter-spacing', '1vw');*/
+                        /*console.log(i);*/
+                    }; // header 움직이는 백그라운드
+                });
+                $('.skillList').each(function (i) {
+                    var skill_object = $(this).offset().top * 1.08;
+                    if (bt_window > skill_object) {
+                        $(this).addClass('on');
+                    } else {
+                        $(this).removeClass('on');
+                    }
+                }); // skill 슬라이드다운
+            })
+            /*scroll Event END*/
         }
-
-        /*scroll Event*/
-        var bt_window = $(window).scrollTop() + $(window).height();
-        $('.sectionTitleStart').each(function () {
-            var section_object = $(this).offset().top + 100;
-            if (bt_window > section_object) {
-                /*$(this).css('letter-spacing','1vw');*/
-            } else {
-                $(this).css('letter-spacing', '0');
-            }
-        });
-        $('.sectionTitle').each(function (i) {
-            var bt_of_object = $(this).offset().top + $(this).outerHeight() * 0.4;
-            /*console.log(scrollValue);*/
-            if ($(window).scrollTop() <= 0) {
-                $('.headerTitle').removeClass('on');
-                $('.introBtn').addClass('on');
-            } // header css
-            if (bt_window > bt_of_object) {
-                var scrollValue = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height())) * 80;
-                changeBgColor(i);
-                /*$('.liBG').stop().animate({
-                  left: scrollValue + '%'
-                }, 550, 'easeOutCirc');*/
-                $('.liBG').stop().animate({
-                    left: i * 20 + '%'
-                }, 550, 'easeOutCirc');
-                $(this).children('.sectionTitleStart').css('letter-spacing', '1vw');
-                /*console.log(i);*/
-            }; // header 움직이는 백그라운드
-        });
-        $('.skillList').each(function (i) {
-            var skill_object = $(this).offset().top * 1.1;
-            if (bt_window > skill_object) {
-                $(this).addClass('on');
-            } else {
-                $(this).removeClass('on');
-            }
-        }); // skill 슬라이드다운
-    })
-    /*scroll Event END*/
-
     /*nav btn*/
     function changeBgColor(i) {
         $('.headerTitle[data-index=' + i + ']').addClass('on');
@@ -66,7 +66,7 @@ $(document).ready(function () {
         $('.headerTitle').css('letter-spacing', '0');
         $(this).css('letter-spacing', '0.5vw');
         $('html').stop().animate({
-            scrollTop: $('.sectionTitle[data-index=' + i + ']').offset().top
+            scrollTop: $('.sectionTitle[data-index=' + i + ']').offset().top * 0.9
         }, 450, 'easeOutCirc');
         /*console.log(i);*/
     });
@@ -105,7 +105,6 @@ $(document).ready(function () {
             nw[0].parentElement.style.opacity = 1;
             animateLetterIn(nw, i);
         }
-
         currentWord = (currentWord == wordArray.length - 1) ? 0 : currentWord + 1;
     }
 
