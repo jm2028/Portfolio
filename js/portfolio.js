@@ -1,53 +1,63 @@
 $(document).ready(function () {
-    let headerheight = $('.headerTitle').outerHeight()
-    $('body').css('padding-top',headerheight - 1);
-
-        if ($(window).width() > 1024) {
-            $(window).scroll(function () {
-                var windowS = $(window).scrollTop();
-                if (windowS > 0) {
-                    $('.ulBG').css('box-shadow', '0px 5px 3px -3px #000');
-                } else {
-                    $('.ulBG').css('box-shadow', 'none');
-                }
-        
-                /*scroll Event*/
-                var bt_window = $(window).scrollTop() + $(window).height();
-                $('.sectionTitleStart').each(function () {
-                    var section_object = $(this).offset().top + $(this).outerHeight()  + 100 ;
-                    if (bt_window > section_object) {
-                        $(this).css('letter-spacing','1vw');
-                    } else {
-                        $(this).css('letter-spacing', '0');
-                    }
-                });
-                $('.sectionTitle').each(function (i) {
-                    var bt_of_object = $(this).offset().top + $(this).outerHeight() * 0.4;
-                    if ($(window).scrollTop() <= 0) {
-                        $('.headerTitle').removeClass('on');
-                        $('.introBtn').addClass('on');
-                    } // header css
-                    if (bt_window > bt_of_object) {
-                        //var scrollValue = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height())) * 80;
-                        changeBgColor(i);
-                        $('.liBG').stop().animate({
-                            left: i * 20 + '%'
-                        }, 550, 'easeOutCirc');
-                        /*$(this).children('.sectionTitleStart').css('letter-spacing', '1vw');*/
-                        /*console.log(i);*/
-                    }; // header 움직이는 백그라운드
-                });
-                $('.skillList').each(function (i) {
-                    var skill_object = $(this).offset().top * 1.08;
-                    if (bt_window > skill_object) {
-                        $(this).addClass('on');
-                    } else {
-                        $(this).removeClass('on');
-                    }
-                }); // skill 슬라이드다운
-            })
-            /*scroll Event END*/
+    var headerheight = $('.headerTitle').outerHeight();
+    $('body').css('padding-top',headerheight - 2);
+    window.addEventListener('resize', function(){
+        var headerheight = $('.headerTitle').outerHeight();
+        $('body').css('padding-top',headerheight - 2);
+    })
+    $(window).scroll(function () {
+        var windowTop = $(window).scrollTop();
+        if (windowTop > 0) {
+            $('.ulBG').css('box-shadow', '0px 5px 3px -3px #000');
+        } else {
+            $('.ulBG').css('box-shadow', 'none');
         }
+
+        /*scroll Event*/
+        var bt_window = $(window).scrollTop() + $(window).height();
+        $('.sectionTitleStart').each(function () {
+            var section_object = $(this).offset().top + $(this).outerHeight()  + 100 ;
+            if (bt_window > section_object) {
+                $(this).css('letter-spacing','1vw');
+            } else {
+                $(this).css('letter-spacing', '0');
+            }
+        });
+        $('.sectionTitle').each(function (i) {
+            var bt_of_object = $(this).offset().top + $(this).outerHeight() * 0.75;
+            if (bt_window > bt_of_object) {
+                changeBgColor(i);
+                $('.liBG').stop().animate({
+                    left: i * 20 + '%'
+                }, 550, 'easeOutCirc');
+            }; // header 움직이는 백그라운드
+        });
+        $('.skillList').each(function (i) {
+            var skill_object = $(this).offset().top;
+            if ($(window).width() > 768) {
+                if (bt_window > skill_object * 1.08) {
+                    $(this).addClass('on');
+                } else {
+                    $(this).removeClass('on');
+                }
+            }
+            if ($(window).width() <= 767) {
+                if (bt_window > skill_object + 65) {
+                    $(this).addClass('on');
+                } else {
+                    $(this).removeClass('on');
+                }
+            }
+        }); // skill 슬라이드다운
+        
+        if (windowTop <= 0) {
+            $('.headerTitle').removeClass('on');
+            $('.introBtn').addClass('on');
+            $('.liBG').stop().animate({left:0},550, 'easeOutCirc');
+        } // header css
+    })
+    /*scroll Event END*/
+    
     /*nav btn*/
     function changeBgColor(i) {
         $('.headerTitle[data-index=' + i + ']').addClass('on');
@@ -65,10 +75,16 @@ $(document).ready(function () {
         var i = $(this).attr('data-index');
         $('.headerTitle').css('letter-spacing', '0');
         $(this).css('letter-spacing', '0.5vw');
-        $('html').stop().animate({
-            scrollTop: $('.sectionTitle[data-index=' + i + ']').offset().top * 0.9
-        }, 450, 'easeOutCirc');
-        /*console.log(i);*/
+        if ( $(window).width() > 1024 ) {
+            $('html').stop().animate({
+                scrollTop: $('.sectionTitle[data-index=' + i + ']').offset().top
+            }, 450, 'easeOutCirc');
+        } else if ( $(window).width() <= 1024 ){
+            $('html').stop().animate({
+                scrollTop: ($('.sectionTitle[data-index=' + i + ']').offset().top) - (($('.sectionTitle[data-index=' + i + ']').parent().height()) * 0.1)
+            }, 450, 'easeOutCirc');
+            console.log($('.sectionTitle[data-index=' + i + ']').innerHeight());
+        }
     });
     /*nav btn END*/
 
@@ -138,6 +154,7 @@ $(document).ready(function () {
     changeWord();
     setInterval(changeWord, 2000);
     /*텍스트 변경*/
+
     /*skill animation*/
     var skill = $('.skillList');
     var height = skill.scrollHeight;
