@@ -1,9 +1,9 @@
 $(document).ready(function () {
     var headerheight = $('.headerTitle').outerHeight();
-    $('body').css('padding-top',headerheight - 2);
+    $('body').css('padding-top',headerheight - 4);
     window.addEventListener('resize', function(){
         var headerheight = $('.headerTitle').outerHeight();
-        $('body').css('padding-top',headerheight - 2);
+        $('body').css('padding-top',headerheight - 4);
     })
     $(window).scroll(function () {
         var windowTop = $(window).scrollTop();
